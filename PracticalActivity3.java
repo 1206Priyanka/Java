@@ -45,7 +45,7 @@ public class PracticalActivity3 {
             System.out.println("product "+x + ", " + Items.get(x));
              x++;
       }
-     System.out.println("Please enter the quanitity of this item or press 9 to checkout");   
+     System.out.println("Please enter the product number of the item you would like to purchase or press 9 to checkout");   
      
      
      int ProductSelected = input.nextInt();
@@ -55,38 +55,38 @@ public class PracticalActivity3 {
          System.out.println("You have selected " + Items.get(ProductSelected) + " is this correct? put 1 for yes or 0 for no");
             int ProductPicked = input.nextInt();
             
-            if(ProductSelected ==1){
+        if(ProductPicked == 1){
                 
-                System.out.println("The product costs " + Prices.get(ProductSelected) + " There are  " + storeQuantity.get(ProductSelected)+"in our inventory");
-                System.out.println("How many would you like to buy? if you don't wan this product enter 0");
+            System.out.println("The product costs " + Prices.get(ProductSelected) + " There are " + Stocks.get(ProductSelected)+" in our inventory");
+            System.out.println("How many would you like to buy? if you don't wan this product enter 0");
                 
-                    int Quantity = input.nextInt();
-                    if(Quantity > 0){
+                int Quantity = input.nextInt();
+                if(Quantity > 0){
                         
-                            if(Quantity < Stocks.get(ProductSelected) ){
-                                System.out.println("The item has been added to your basket");
-                                int newStocks = Stocks.get(ProductSelected) - Quantity;
-                                Stocks.put(ProductSelected, newStocks);
-                                TotalPrice = TotalPrice + (Quantity * Prices.get(ProductSelected));     
-                            }
-                        
-                            else{
-                                System.out.println("You have selected an amount higher than our stock try a small amount");
-                        }
+                    if(Quantity < Stocks.get(ProductSelected) ){
+                        System.out.println("The item has been added to your basket");
+                        int newStocks = Stocks.get(ProductSelected) - Quantity;
+                        Stocks.put(ProductSelected, newStocks);
+                        TotalPrice = TotalPrice + (Quantity * Prices.get(ProductSelected));     
                     }
                         
-                        
-                    else if (Quantity == 0){
-                        System.out.println("The item has not been added to your basket");
-                    }
-                                
                     else{
-                    System.out.println(" The quantity has not been entered. The item has not been added to the basket.");
+                         System.out.println("You have selected an amount higher than our stock try a small amount");
                     }
-            }
+                }
+                        
+                        
+                else if (Quantity == 0){
+                    System.out.println("The item has not been added to your basket");
+                }
+                                
+                else{
+                    System.out.println(" The quantity has not been entered. The item has not been added to the basket.");
+                }
+        }
             
-        else if(ProductSelected == 0){
-            System.out.println("The item has been sucessfully added to the basket");
+        else if(ProductPicked == 0){
+            System.out.println("The item has not been added to the basket.");
         }
                 
         else{
@@ -98,8 +98,8 @@ public class PracticalActivity3 {
                         
                     }
      
-    System.out.println("Thank you for shopping with us total amount due is: £"+ TotalPrice);
+    System.out.println("Thank you for shopping with us. Total amount due is: £"+ TotalPrice);
     }
-
-}
     
+}
+
