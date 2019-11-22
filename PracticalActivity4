@@ -1,6 +1,6 @@
 
 package practicalactivity4;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PracticalActivity4 {
@@ -9,32 +9,66 @@ public class PracticalActivity4 {
     public static void main(String[] args) {
     Scanner input = new Scanner(System.in);
     
-    String[] candidates = new String[0];
-    int [] votes = new int[0];
-    int indexes = 0;
-    String UserInput = input.nextLine();
+    ArrayList<String> candidate = new ArrayList <String>();
+    ArrayList<Integer> votes = new ArrayList <Integer>();
     
+    System.out.println("Please enter the name of the candidate you would like to vote for");
+    String userInput = input.nextLine();
     
-    for(int i = 0; i <= (candidates.length+1); i++){
+    if (candidate.contains(userInput)){
         
+        int indexCounter = candidate.indexOf(userInput);
+        int  currentVotes = votes.get(indexCounter);
+        int newVotes = currentVotes + 1;
+        
+        votes.set(indexCounter, newVotes);
+           
+    }
     
-    if((UserInput)==(candidates[indexes])){
-        votes[indexes] = votes[indexes] + 1;
+    else if (userInput == "Q"){
+        
+        int NumberOfCandidates = candidate.size();
+        int indexCounter = 0;
+        
+        while(indexCounter < NumberOfCandidates){
+            
+            String currentCandidate = candidate.get(indexCounter);
+            int numberOfVotes = votes.get(indexCounter);
+            
+            System.out.println(currentCandidate + " got "+ numberOfVotes+ "votes");
+            indexCounter = indexCounter + 1;
+        
+        }
+        
+        int currentIndex = 0;
+        int currentWinner = votes.get(currentIndex);
+        
+        if(currentWinner< currentIndex+1){
+            
+            currentWinner = votes.get(currentIndex +1);
+            currentIndex = currentIndex + 1;
+            
+        }
+        
+        int WinnerIndex = votes.indexOf(currentWinner);
+        String Winner = candidate.get(WinnerIndex);
+        int WinningVotes = votes.get(WinnerIndex);
+        
+        System.out.println("The winner is " + Winner +  " with " + WinningVotes + " votes");
+       
+        
         
     }
     
     else{
-        candidates[indexes] = parseString(UserInput());
-            votes[indexes]= (votes[indexes]+1);
-    }
+        
+        candidate.add(userInput);
+        votes.add(1);
     
-    }   
-    System.out.print(Arrays.toString(candidates));
-    System.out.print(Arrays.toString(votes));
- 
+    }
         
     }
 
    
-    }
+ }
     
