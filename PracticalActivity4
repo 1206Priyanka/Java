@@ -1,4 +1,3 @@
-
 package practicalactivity4;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -7,25 +6,45 @@ public class PracticalActivity4 {
 
     
     public static void main(String[] args) {
-    Scanner input = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
     
-    ArrayList<String> candidate = new ArrayList <String>();
-    ArrayList<Integer> votes = new ArrayList <Integer>();
+        ArrayList<String> candidate = new ArrayList <String>();
+        ArrayList<Integer> votes = new ArrayList <Integer>();
     
-    System.out.println("Please enter the name of the candidate you would like to vote for");
-    String userInput = input.nextLine();
+     
+        String userInput = null;
     
-    if (candidate.contains(userInput)){
+        while (!"-1".equals(userInput)){
+            System.out.println("Please enter the name of the candidate you would like to vote for");
+            userInput = input.nextLine();
+            
+            if ("-1".equals(userInput)){
+                
+                System.out.println("The final results are:");
+            }
+    
+            else if (candidate.contains(userInput)){
         
-        int indexCounter = candidate.indexOf(userInput);
-        int  currentVotes = votes.get(indexCounter);
-        int newVotes = currentVotes + 1;
+                int indexCounter = candidate.indexOf(userInput);
+                int  currentVotes = votes.get(indexCounter);
+                int newVotes = currentVotes + 1;
         
-        votes.set(indexCounter, newVotes);
+                 votes.set(indexCounter, newVotes);
+                 
+                 
            
-    }
+            }
     
-    else if (userInput == "Q"){
+            else {
+        
+                candidate.add(userInput);
+                votes.add(1);
+                
+    
+            }
+        
+        
+        }
         
         int NumberOfCandidates = candidate.size();
         int indexCounter = 0;
@@ -35,10 +54,10 @@ public class PracticalActivity4 {
             String currentCandidate = candidate.get(indexCounter);
             int numberOfVotes = votes.get(indexCounter);
             
-            System.out.println(currentCandidate + " got "+ numberOfVotes+ "votes");
+            System.out.println(currentCandidate + " got "+ numberOfVotes+ " votes");
             indexCounter = indexCounter + 1;
-        
-        }
+            
+        }    
         
         int currentIndex = 0;
         int currentWinner = votes.get(currentIndex);
@@ -50,6 +69,8 @@ public class PracticalActivity4 {
             
         }
         
+       
+        
         int WinnerIndex = votes.indexOf(currentWinner);
         String Winner = candidate.get(WinnerIndex);
         int WinningVotes = votes.get(WinnerIndex);
@@ -58,17 +79,8 @@ public class PracticalActivity4 {
        
         
         
-    }
-    
-    else{
-        
-        candidate.add(userInput);
-        votes.add(1);
-    
-    }
         
     }
 
    
  }
-    
