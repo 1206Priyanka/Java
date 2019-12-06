@@ -1,0 +1,140 @@
+package practicaldemonstration;
+
+import java.util.Date;
+import java.util.Scanner;
+
+
+public class PracticalDemonstration {
+
+    
+    public static void main(String[] args) {
+  
+    
+        //User input
+        
+           Scanner userInput = new Scanner(System.in); 
+           
+           
+       //Creating Account Object
+       testAccount testingAccount = new testAccount(1122, 20000); 
+       testingAccount.setAnnualInterestRate(4.5); 
+       testAccount a3 = new testAccount(); 
+
+        //Printing out the current data 
+        System.out.println("Default constructor class:"); 
+        System.out.println("Customer ID: " + testingAccount.getID()); 
+        System.out.println("Customer Balance: £" + testingAccount.getBalance());         
+        System.out.println("Customer Annual Interest rate: " + testingAccount.getAnnualInterestRate() + "%"); 
+        System.out.println("Monthly Interest: " + testingAccount.getMonthlyInterestRate()); 
+        System.out.println("Date Created: " + testingAccount.getDateCreated()); 
+        System.out.println(""); 
+   
+         
+        // Option of making a withdrawl and deposit.
+        System.out.println("Would you like to withdraw or deposit? w/d"); 
+        String change = userInput.nextLine();  
+        
+        //if statement to make a withdrawl
+        if (change.equals("w")){ 
+            System.out.println("Original Balance: " + testingAccount.getBalance()); 
+            double newWithDraw = testAccount.withDraw(testingAccount.getBalance()); 
+            testingAccount.setBalance(newWithDraw); 
+            System.out.println("New Balance: " + testingAccount.getBalance()); 
+            
+        //else if to make a deposit
+        }else if (change.equals("d")){ 
+                System.out.println("Original Balance: " + testingAccount.getBalance()); 
+                double newDeposit = testAccount.deposit(testingAccount.getBalance()); 
+                testingAccount.setBalance(newDeposit); 
+                System.out.println("New Balance: "+ testingAccount.getBalance()); 
+              } 
+         
+             
+       }   
+    } 
+    
+     
+//TestAccount class adding attributes to the class.
+class testAccount { 
+     
+    private int ID; 
+    private double balance; 
+    private double annualInterestRate = 0; 
+    private Date dateCreated; 
+     
+    //No args constructor creating a default account 
+    public testAccount(){ 
+        ID = 0; 
+        balance = 0; 
+        annualInterestRate = 0; 
+    } 
+    
+    
+    //ID for testAccount
+    public testAccount(int ID, double balance){ 
+        this.ID = ID; 
+        this.balance = balance; 
+        dateCreated = new Date(); 
+    } 
+    
+    
+    //mutate + set ID
+    public void setID (int ID){ 
+        this.ID = ID; 
+    } 
+
+    //get or access ID
+    public int getID(){
+        return ID; 
+    } 
+    
+    
+    // mutate + set balance
+    public void setBalance (double balance){ //set or mutate balance 
+        this.balance = balance; 
+    } 
+    
+    //get + access balance
+    public double getBalance(){ 
+        return balance; 
+    } 
+    
+     //mutate + aet Anualinterestrate 
+    public void setAnnualInterestRate (double annualInterestRate){ 
+        this.annualInterestRate = annualInterestRate; 
+    } 
+    
+     //get + access Annualinterestrate 
+    public double getAnnualInterestRate(){ 
+        return annualInterestRate; 
+    } 
+     
+     
+    public String getDateCreated() { 
+        return dateCreated.toString(); 
+    } 
+     
+    public double getMonthlyInterestRate(){ 
+       return annualInterestRate / 12; 
+    } 
+
+    //Method for withdrawling money 
+    public static double withDraw(double tempBal){ 
+        Scanner input = new Scanner(System.in); 
+        System.out.println("Please enter how much you would like to withdraw"); 
+        double withDraw = input.nextDouble(); 
+       // double test = 2500; 
+        tempBal = tempBal -  withDraw; 
+        return tempBal;  
+    }  
+     
+    //Method for making a deposit
+    public static double deposit(double tempBal){ 
+        Scanner input = new Scanner(System.in); 
+        System.out.println("Please enter how much you would like to deposit"); 
+        double deposit = input.nextDouble();          
+       // double test = 3000; 
+        tempBal = tempBal +  deposit; 
+        return tempBal;  
+    }               
+} 
